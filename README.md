@@ -1,6 +1,6 @@
 # agent-skills
 
-> **Note:** This repo is mirrored from [Shopify/dev-mcp](https://github.com/Shopify/dev-mcp) and will eventually be published as [shopify/agent-skills](https://github.com/shopify/agent-skills).
+> **Note:** This repo is generated upstream — we do not accept contributions or pull requests here.
 
 A collection of agent skills verified to work with Shopify's development ecosystem. Skills are installable via the `npx skill` CLI and provide Claude Code with API-specific context, documentation search, and code validation for each Shopify surface.
 
@@ -46,4 +46,4 @@ npx skill install shopify-liquid
 
 ## Source
 
-Skills in this repo are generated from [Shopify/dev-mcp](https://github.com/Shopify/dev-mcp) and verified against their respective APIs using [promptfoo](https://promptfoo.dev) evals.
+Skills in this repo are generated upstream and verified against their respective APIs using [promptfoo](https://promptfoo.dev) evals.
