@@ -1,0 +1,6 @@
+handleId,fieldType,name,description,productImageUrl,collection,sku,ribbon,price,surcharge,visible,weight,brand,productOptionName1,productOptionName2,productOptionDescription1,productOptionType1,Color,Size
+wix-yoga-mat-001,Product,"(Wix) Cork Yoga Mat","Premium cork and natural rubber yoga mat. Non-slip surface that improves grip with moisture. Eco-friendly and biodegradable.",https://example.com/images/wix-yoga-1.jpg;https://example.com/images/wix-yoga-2.jpg,Fitness,,,89.00,,true,2.5,EcoFlow,Color,Size,,DROP_DOWN,,
+wix-yoga-mat-001,Variant,,,,,WX-YOGA-NAT,,89.00,,true,2.5,,,,,DROP_DOWN,Natural,Standard
+wix-yoga-mat-001,Variant,,,,,WX-YOGA-TL,,89.00,,true,2.5,,,,,DROP_DOWN,Teal,Standard
+wix-yoga-mat-001,Variant,,,,,WX-YOGA-NAT-XL,,99.00,10.00,true,3.0,,,,,DROP_DOWN,Natural,Extra Long
+wix-resistance-001,Product,"(Wix) Resistance Band Set","Set of 5 resistance bands with varying tension levels. Includes carrying bag and exercise guide.",https://example.com/images/wix-bands.jpg,Fitness,WX-BAND-SET,SALE,29.95,,true,0.4,FlexFit,,,,,,,

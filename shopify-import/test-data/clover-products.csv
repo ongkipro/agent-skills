@@ -1,0 +1,6 @@
+Clover ID,Name,Alternate Name,Price,Price Type,Cost,Product Code,SKU,Category,Labels,Hidden,Stock Count
+CLV001,"(Clover) Artisan Sourdough Loaf",,7.50,FIXED,2.25,,CV-BREAD-SD,Bread,"fresh,daily",No,45
+CLV002,"(Clover) Blueberry Scone",,4.25,FIXED,1.10,,CV-PASTRY-BS,Pastries,"fresh,morning",No,60
+CLV003,"(Clover) Cold Brew Concentrate 16oz",,12.99,FIXED,4.50,012345700001,CV-DRINK-CB,Beverages,"cold brew,coffee",No,30
+CLV004,"(Clover) Seasonal Mystery Box",Custom price per customer,0.00,VARIABLE,,,CV-MYST-01,Specials,"seasonal",No,10
+CLV005,"(Clover) Staff Training Pastry",,1.00,FIXED,0.50,,CV-TRAIN-01,Internal,,Yes,0

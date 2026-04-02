@@ -1,0 +1,5 @@
+System ID,Item,Description,Custom SKU,UPC,Price,Default Cost,Category,Vendor,Tax,Qty,Size,Color
+LS-R-001,"(Lightspeed-R) Trail Running Shoe","Lightweight trail running shoe with Vibram outsole and breathable mesh upper.",LR-TRAIL-BK10,012345800001,149.99,72.00,Footwear,Salomon,Yes,18,10,Black
+LS-R-002,"(Lightspeed-R) Trail Running Shoe","Lightweight trail running shoe with Vibram outsole and breathable mesh upper.",LR-TRAIL-BK11,012345800002,149.99,72.00,Footwear,Salomon,Yes,14,11,Black
+LS-R-003,"(Lightspeed-R) Trail Running Shoe","Lightweight trail running shoe with Vibram outsole and breathable mesh upper.",LR-TRAIL-NV10,012345800003,149.99,72.00,Footwear,Salomon,Yes,22,10,Navy
+LS-R-004,"(Lightspeed-R) Trekking Pole Set","Collapsible carbon fiber trekking poles with cork grips. Adjustable 24-54 inches.",LR-TREK-CF,012345800004,89.95,38.00,Hiking Gear,BlackDiamond,Yes,35,,,
