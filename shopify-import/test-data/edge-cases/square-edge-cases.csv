@@ -1,0 +1,14 @@
+Token,Item Name,Variation Name,SKU,Description,Category,SEO Title,SEO Description,Permalink,GTIN,Weight (kg),Price,Online Sale Price,Archived,Option Name 1,Option Value 1,Option Name 2,Option Value 2,Option Name 3,Option Value 3,Enabled Main Warehouse,Current Quantity Main Warehouse,Default Unit Cost
+10,(Square) Café Résumé Böwl,Small / White,,Ünïcödé description with "quotes" and <html> tags,Cåfé Wäre,,,,,0.3,12.99,,N,Size,Small,Color,White,,,Y,10,5.00
+10,(Square) Café Résumé Böwl,Large / White,,Ünïcödé description with "quotes" and <html> tags,Cåfé Wäre,,,,,0.5,15.99,,N,Size,Large,Color,White,,,Y,8,6.00
+10,(Square) Café Résumé Böwl,Small / Black,,Ünïcödé description with "quotes" and <html> tags,Cåfé Wäre,,,,,0.3,12.99,,N,Size,Small,Color,Black,,,Y,0,5.00
+20,(Square) Empty Everything,,,,,,,,,,,,,N,,,,,,Y,0,
+20,(Square) Empty Everything,,,,,,,,,,,0,,N,,,,,,Y,,
+30,(Square) Zero Dollar Freebie,Free,SQ-FREE-01,A free product we give away,Promos,,,,,,0.00,,N,,,,,,Y,100,0.00
+40,(Square) Archived But Referenced,Standard,SQ-ARCH-01,This is archived,Old Stuff,,,,,,99.99,,Y,,,,,,Y,5,50.00
+50,(Square) Sale Price Equals Regular,Standard,SQ-SALE-EQ,Sale price same as regular,Weird,,,,,,29.99,29.99,N,,,,,,Y,20,10.00
+60,(Square) Sale Price Higher Than Regular,Standard,SQ-SALE-HI,Sale price > regular,Weird,,,,,,29.99,39.99,N,,,,,,Y,15,10.00
+70,(Square) Massive Variant Product,XS/Red/Cotton/V-Neck,SQ-MASS-01,Too many options,Apparel,,,,,,19.99,,N,Size,XS,Color,Red,Material,Cotton,Y,10,8.00
+70,(Square) Massive Variant Product,S/Blue/Polyester/Crew,SQ-MASS-02,Too many options,Apparel,,,,,,19.99,,N,Size,S,Color,Blue,Material,Polyester,Y,12,8.00
+80,(Square) Negative Weight,Standard,SQ-NEG-W,Negative weight value,Misc,,,,,,5.99,,N,,,,,,Y,5,2.00
+90,(Square) Disabled Warehouse,Standard,SQ-DIS-WH,Warehouse disabled,Misc,,,,,,14.99,,N,,,,,,N,50,7.00

@@ -1,0 +1,9 @@
+TITLE,DESCRIPTION,PRICE,CURRENCY_CODE,QUANTITY,TAGS,MATERIALS,IMAGE1,IMAGE2,IMAGE3,VARIATION 1 TYPE,VARIATION 1 NAME,VARIATION 1 VALUES,VARIATION 2 TYPE,VARIATION 2 NAME,VARIATION 2 VALUES,VARIATION 3 TYPE,VARIATION 3 NAME,VARIATION 3 VALUES,SKU
+"(Etsy) SKU Mismatch Product","Has 4 variant combos but only 2 SKUs",15.00,USD,50,"test,edge","cotton",https://example.com/img1.jpg,,,Scent,Scent,"Lavender, Rose",Size,Size,"Small, Large",,,,ET-MIS-01,ET-MIS-02
+"(Etsy) Too Many Options","Has 3 variation types with multiple values each",30.00,USD,100,"complex,variant","mixed",https://example.com/img2.jpg,,,Color,Color,"Red, Blue, Green",Size,Size,"S, M, L",Material,Material,"Cotton, Silk","ET-3OPT-01,ET-3OPT-02,ET-3OPT-03,ET-3OPT-04,ET-3OPT-05,ET-3OPT-06,ET-3OPT-07,ET-3OPT-08,ET-3OPT-09,ET-3OPT-10,ET-3OPT-11,ET-3OPT-12,ET-3OPT-13,ET-3OPT-14,ET-3OPT-15,ET-3OPT-16,ET-3OPT-17,ET-3OPT-18"
+"(Etsy) Non-USD Currency","Priced in EUR",25.50,EUR,20,"european","wool",https://example.com/img3.jpg,,,,,,,,,,,,ET-EUR-01
+"(Etsy) Empty Variation Values","Variation type declared but no values",18.00,USD,15,"empty,variant","paper",https://example.com/img4.jpg,,,Style,Style,"",,,,,,ET-EMPTY-01
+"(Etsy) Zero Price","Free digital download",0.00,USD,999,"free,digital","digital",https://example.com/img5.jpg,,,,,,,,,,,,ET-FREE-01
+"(Etsy) No Images","Product with no images at all",12.00,USD,40,"minimal",,,,,,,,,,,,,,ET-NOIMG-01
+"(Etsy) Comma In Value","Values contain commas themselves",22.00,USD,30,"tricky","cotton",https://example.com/img6.jpg,,,Size,Size,"Small, Medium, Large, X-Large",,,,,,,ET-COMMA-01
+"(Etsy) 🎨 Emoji Title","Description with 🌈 emoji and ñ accents",35.00,USD,25,"emoji,unicode","clay",https://example.com/img7.jpg,,,,,,,,,,,,ET-EMOJI-01

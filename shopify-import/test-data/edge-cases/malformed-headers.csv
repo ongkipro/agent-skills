@@ -1,0 +1,3 @@
+﻿ Token ,  Item Name , Variation Name , SKU ,Description,Category, Price ,Archived
+1,"(Malformed) BOM And Whitespace Headers","Standard","MAL-BOM-01","Has BOM marker and spaces in headers","Test","19.99","N"
+2,"(Malformed) Normal Row","Default","MAL-NORM-01","Just a normal row after the bad headers","Misc","9.99","N"

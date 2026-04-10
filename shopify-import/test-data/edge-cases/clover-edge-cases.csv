@@ -1,0 +1,11 @@
+Clover ID,Name,Alternate Name,Price,Price Type,Cost,Product Code,SKU,Category,Labels,Hidden,Stock Count
+CLV-E01,"(Clover) All Variable Pricing",Custom price,0.00,VARIABLE,,,CV-VAR-01,Specials,"variable",No,25
+CLV-E02,"(Clover) All Variable Pricing 2",Per customer,0.00,VARIABLE,,,CV-VAR-02,Specials,"variable",No,10
+CLV-E03,"(Clover) Hidden Item","Secret menu",5.00,FIXED,2.00,,CV-HID-01,,hidden,Yes,30
+CLV-E04,"(Clover) Hidden Item 2",,8.00,FIXED,3.00,,CV-HID-02,,hidden,Yes,15
+CLV-E05,"(Clover) No Category",,12.50,FIXED,4.00,012345700010,CV-NOCAT-01,,,No,50
+CLV-E06,"(Clover) Negative Stock",,7.99,FIXED,2.50,,CV-NEG-01,Food,"fresh",No,-5
+CLV-E07,"(Clover) Zero Price Fixed",,0.00,FIXED,0.00,,CV-ZERO-01,Promos,"free",No,100
+CLV-E08,"(Clover) Very Long Name That Exceeds What Most Systems Would Reasonably Allow For A Product Title And Just Keeps Going And Going",,15.00,FIXED,5.00,,CV-LONG-01,Misc,,No,20
+CLV-E09,"(Clover) Comma, In Name",,9.99,FIXED,3.00,,CV-COMMA-01,"Food, Drink","tag1,tag2,tag3",No,40
+CLV-E10,"(Clover) Empty Everything Else",,,,,,,,,,

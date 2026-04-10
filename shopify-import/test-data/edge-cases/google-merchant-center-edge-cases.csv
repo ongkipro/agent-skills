@@ -1,0 +1,12 @@
+id,title,description,link,image_link,additional_image_link,price,sale_price,availability,brand,gtin,mpn,google_product_category,product_type,item_group_id,color,size,material,gender,age_group,condition,shipping_weight,custom_label_0
+gmc-e01,"(GMC) Mixed Currency USD","Price in USD",https://example.com/p1,https://example.com/img1.jpg,,29.99 USD,,in_stock,TestBrand,012345900010,,Home > Kitchen,Mugs,,,,,,,0.3 kg,sale
+gmc-e02,"(GMC) Mixed Currency EUR","Price in EUR - different currency",https://example.com/p2,https://example.com/img2.jpg,,25.00 EUR,,in_stock,TestBrand,012345900011,,Home > Kitchen,Mugs,,,,,,,0.3 kg,sale
+gmc-e03,"(GMC) Out Of Stock","availability=out_of_stock",https://example.com/p3,https://example.com/img3.jpg,,45.00 USD,,out_of_stock,OOSBrand,012345900012,,Apparel,Shirts,gmc-oos-group,Red,M,,Male,Adult,new,0.2 kg,
+gmc-e04,"(GMC) Out Of Stock","Same group different variant",https://example.com/p3,https://example.com/img3.jpg,,45.00 USD,,out_of_stock,OOSBrand,012345900013,,Apparel,Shirts,gmc-oos-group,Blue,M,,Male,Adult,new,0.2 kg,
+gmc-e05,"(GMC) Preorder Item","availability=preorder",https://example.com/p4,https://example.com/img4.jpg,,99.00 USD,,preorder,PreBrand,,,Electronics,Gadgets,,,,,,Adult,new,0.5 kg,preorder
+gmc-e06,"(GMC) Missing Group ID On Grouped","Has color/size but no item_group_id",https://example.com/p5,https://example.com/img5.jpg,,55.00 USD,,in_stock,GroupBrand,,,Apparel,Jackets,,Black,L,Polyester,Female,Adult,new,0.8 kg,
+gmc-e07,"(GMC) Missing Group ID On Grouped","Same product different variant but no group",https://example.com/p5,https://example.com/img5.jpg,,55.00 USD,,in_stock,GroupBrand,,,Apparel,Jackets,,Navy,L,Polyester,Female,Adult,new,0.8 kg,
+gmc-e08,"(GMC) Sale Higher Than Regular","sale_price > price",https://example.com/p6,https://example.com/img6.jpg,,30.00 USD,45.00 USD,in_stock,WeirdBrand,,,Home,Decor,,,,,,Adult,new,,
+gmc-e09,"(GMC) Free Item","Price is 0",https://example.com/p7,https://example.com/img7.jpg,,0.00 USD,,in_stock,FreeBrand,,,Digital,Downloads,,,,,,Adult,new,,free
+gmc-e10,"(GMC) No Price Field","Price field completely empty",https://example.com/p8,https://example.com/img8.jpg,,,,in_stock,NoPriceBrand,,,Misc,Other,,,,,,,,
+gmc-e11,"(GMC) Refurbished Condition","condition=refurbished",https://example.com/p9,https://example.com/img9.jpg,,149.00 USD,,in_stock,RefurbBrand,012345900014,,Electronics,Phones,,,,,,Adult,refurbished,0.2 kg,refurb

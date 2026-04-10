@@ -1,0 +1,11 @@
+System ID,Item,Description,Custom SKU,UPC,Price,Default Cost,Category,Vendor,Tax,Qty,Size,Color
+LS-R-E01,"(Lightspeed-R) No Size No Color","No variant dimensions at all",LR-NOSV-01,012345800010,29.99,12.00,Accessories,GenericVendor,Yes,20,,
+LS-R-E02,"(Lightspeed-R) No Size No Color","Duplicate system ID same product",LR-NOSV-02,012345800011,29.99,12.00,Accessories,GenericVendor,Yes,15,,
+LS-R-E03,"(Lightspeed-R) Zero Cost Item","Cost is 0.00",LR-ZERO-01,,49.99,0.00,Clearance,,Yes,5,10,Black
+LS-R-E04,"(Lightspeed-R) Tax Exempt","Tax=No",LR-NOTAX-01,,19.99,8.00,Food,FarmCo,No,100,,
+LS-R-E05,"(Lightspeed-R) Negative Qty","Stock is negative",LR-NEG-01,,39.99,15.00,Returns,ReturnVendor,Yes,-3,M,Red
+LS-R-E06,"(Lightspeed-R) No Price","Price field empty",LR-NOPRICE-01,,,,Misc,,Yes,10,L,Blue
+LS-R-E07,"(Lightspeed-R) Very Expensive","High price",LR-EXPENSIVE,012345800012,99999.99,50000.00,Jewelry,LuxBrand,Yes,1,One Size,Gold
+LS-R-E08,"(Lightspeed-R) Same Item Grouped","Grouped by item name + size/color",LR-GRP-BK-S,,79.99,35.00,Footwear,NikeCo,Yes,10,S,Black
+LS-R-E09,"(Lightspeed-R) Same Item Grouped","Grouped by item name + size/color",LR-GRP-BK-M,,79.99,35.00,Footwear,NikeCo,Yes,8,M,Black
+LS-R-E10,"(Lightspeed-R) Same Item Grouped","Grouped by item name + size/color",LR-GRP-WH-S,,84.99,35.00,Footwear,NikeCo,Yes,6,S,White

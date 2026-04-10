@@ -1,0 +1,8 @@
+Token,Item Name,Variation Name,SKU,Description,Category,SEO Title,SEO Description,Permalink,GTIN,Weight (kg),Price,Online Sale Price,Archived,Option Name 1,Option Value 1,Enabled Main Warehouse,Current Quantity Main Warehouse,Default Unit Cost
+1,(Square) 日本語の陶器セット,小さい / 白,SQ-JP-01,手作りの陶器セット。美しい釉薬仕上げ。,陶器,日本語SEOタイトル,日本語のSEO説明文です,japanese-pottery,,0.5,34.99,,N,サイズ,小さい,Y,15,12.00
+1,(Square) 日本語の陶器セット,大きい / 白,SQ-JP-02,手作りの陶器セット。美しい釉薬仕上げ。,陶器,日本語SEOタイトル,日本語のSEO説明文です,japanese-pottery,,0.8,44.99,,N,サイズ,大きい,Y,10,16.00
+2,(Square) منتج عربي,قياسي,SQ-AR-01,هذا وصف المنتج باللغة العربية,متجر عربي,,,,,,29.99,,N,,,,Y,20,10.00
+3,(Square) 🎨 Emoji Art Canvas™,🌈 Rainbow / Large,SQ-EMJ-01,Features 🎭 theatrical masks and 🌸 cherry blossoms. Made with ❤️ in Portland.,🎨 Art,🖼️ Canvas Art,Beautiful 🌈 art for your 🏠,emoji-art,,1.2,89.99,,N,Design,🌈 Rainbow,Y,5,30.00
+3,(Square) 🎨 Emoji Art Canvas™,🌊 Ocean / Large,SQ-EMJ-02,Features 🎭 theatrical masks and 🌸 cherry blossoms. Made with ❤️ in Portland.,🎨 Art,🖼️ Canvas Art,Beautiful 🌈 art for your 🏠,emoji-art,,1.2,89.99,,N,Design,🌊 Ocean,Y,3,30.00
+4,(Square) Ñoño's Piñata Café,Estándar,SQ-ES-01,"Café con leche, más también piñatas para niños. ¡Fantástico!",Café Español,,,,,,15.50,,N,,,,Y,40,5.00
+5,(Square) Ölüdeniz Güneş Kremi,Standart,SQ-TR-01,Türk güneş kremi. Çok güzel ve doğal.,Kozmetik,,,,,,22.00,,N,,,,Y,30,8.00

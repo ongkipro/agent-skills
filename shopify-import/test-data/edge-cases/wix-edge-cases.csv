@@ -1,0 +1,13 @@
+handleId,fieldType,name,description,productImageUrl,collection,sku,ribbon,price,surcharge,visible,weight,brand,productOptionName1,productOptionName2,productOptionDescription1,productOptionType1,Color,Size
+wix-order-test-001,Variant,,,,,WX-ORD-BL,,25.00,,true,0.5,,,,,DROP_DOWN,Blue,Medium
+wix-order-test-001,Product,"(Wix) Variant Before Product","Variant row appears before the Product row",https://example.com/img1.jpg,Apparel,,,25.00,,true,0.5,TestBrand,Color,Size,,DROP_DOWN,,
+wix-order-test-001,Variant,,,,,WX-ORD-RD,,25.00,,true,0.5,,,,,DROP_DOWN,Red,Medium
+,Product,"(Wix) Missing HandleId","No handleId at all",https://example.com/img2.jpg,Misc,WX-NOID,,15.00,,true,0.3,,,,,,,
+wix-invisible-001,Product,"(Wix) Invisible Product","visible=false",https://example.com/img3.jpg,Hidden,,,30.00,,false,1.0,HiddenBrand,,,,,,,
+wix-invisible-001,Variant,,,,,WX-INV-01,,30.00,,false,1.0,,,,,DROP_DOWN,,
+wix-surcharge-001,Product,"(Wix) Surcharge No Base Price","Has surcharge but base price is 0",https://example.com/img4.jpg,Specials,,,0.00,,true,0.2,,Size,,,DROP_DOWN,,
+wix-surcharge-001,Variant,,,,,WX-SURCH-S,,0.00,15.00,true,0.2,,,,,DROP_DOWN,,Small
+wix-surcharge-001,Variant,,,,,WX-SURCH-L,,0.00,25.00,true,0.2,,,,,DROP_DOWN,,Large
+wix-dup-001,Product,"(Wix) Duplicate Handle Product A","First product with this handle",https://example.com/img5.jpg,Dupes,WX-DUP-A,,20.00,,true,0.4,BrandA,,,,,,,
+wix-dup-001,Product,"(Wix) Duplicate Handle Product B","Second product row with same handle - should this merge or overwrite?",https://example.com/img6.jpg,Dupes,WX-DUP-B,,22.00,,true,0.4,BrandB,,,,,,,
+wix-empty-001,Product,"(Wix) Empty Description","",https://example.com/img7.jpg,,WX-EMPTY,,10.00,,true,,,,,,,,,

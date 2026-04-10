@@ -1,0 +1,12 @@
+ID,Type,SKU,Name,Published,Short description,Description,Regular price,Sale price,Categories,Tags,Images,Weight (kg),Tax status,In stock?,Stock,Backorders allowed?,Attribute 1 name,Attribute 1 value(s),Attribute 2 name,Attribute 2 value(s),Parent
+100,variable,,"(WooCommerce) Orphan Parent Product",1,"Parent exists but no children","<p>This variable product has no variation rows.</p>",,,"Clothing","orphan",https://example.com/images/orphan.jpg,0.5,taxable,1,0,0,Color,"Red, Blue",,,,
+200,variation,WC-ORPH-01,"(WooCommerce) Orphaned Variation",1,,,29.99,,"Clothing",,,,taxable,1,50,0,Color,Red,,,id:999
+300,simple,WC-UNPUB,"(WooCommerce) Unpublished Product",0,"Not published","<p>This product has Published=0</p>",49.99,,"Hidden",,https://example.com/images/hidden.jpg,,taxable,1,10,0,,,,,
+400,simple,WC-NOSTOCK,"(WooCommerce) Out of Stock",1,"Out of stock item","<p>In stock? = 0</p>",15.00,,"Misc",,,,taxable,0,0,0,,,,,
+500,simple,WC-HTML,"(WooCommerce) HTML &amp; Entity Madness",1,"Short &lt;b&gt;bold&lt;/b&gt;","<p>Full of &amp;entities&amp; and <script>alert('xss')</script> and <img src=x onerror=alert(1)> and normal <strong>bold</strong> text</p>",25.00,,"Misc","html,entities",,0.1,taxable,1,30,0,,,,,
+600,grouped,,"(WooCommerce) Grouped Product",1,"A grouped product type","<p>Grouped products are not variable or simple</p>",,,"Bundles",,,,taxable,1,,0,,,,,
+700,simple,WC-NEGPRICE,"(WooCommerce) Negative Price",1,"Negative price","<p>What happens?</p>",-10.00,,"Errors",,,,taxable,1,5,0,,,,,
+800,variable,,"(WooCommerce) Backorders Allowed",1,"Backorder product","<p>Stock is 0 but backorders allowed</p>",,,"Clothing",,,,taxable,1,0,1,Size,"S, M, L",,,,
+801,variation,WC-BACK-S,"(WooCommerce) Backorders Allowed - S",1,,,30.00,,,,,0.2,taxable,1,0,1,Size,S,,,id:800
+802,variation,WC-BACK-M,"(WooCommerce) Backorders Allowed - M",1,,,30.00,,,,,0.2,taxable,1,0,1,Size,M,,,id:800
+900,simple,,"(WooCommerce) No SKU At All",1,"Missing SKU","<p>SKU is blank</p>",19.99,,"Misc",,,,taxable,1,20,0,,,,,

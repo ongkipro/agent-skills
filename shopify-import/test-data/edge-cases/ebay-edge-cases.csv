@@ -1,0 +1,10 @@
+Title,Description,Custom label (SKU),Start price,Buy It Now price,Quantity,PicURL,Category name,Condition,Format,Item ID,Variation Details
+"(eBay) Auction Only","<p>Pure auction listing, no BIN</p>",EB-AUCT-01,10.00,,1,https://example.com/auction.jpg,Collectibles,Used,Auction,220001,
+"(eBay) Auction With BIN","<p>Auction format but also has Buy It Now</p>",EB-AUCT-BIN,5.00,25.00,1,https://example.com/auction-bin.jpg,Collectibles,New,Auction,220002,
+"(eBay) Zero Quantity","<p>Sold out listing</p>",EB-ZERO-QTY,,19.99,0,https://example.com/zero.jpg,Electronics,New,FixedPrice,220003,
+"(eBay) Massive HTML Description","<div style=""font-family: Comic Sans MS; color: red;""><table><tr><td><p><b><i><u>THIS IS <span style=""font-size: 72px;"">HUGE</span></u></i></b></p></td></tr></table><marquee>scrolling text</marquee><br/><br/><br/><p>Actual product description buried under formatting garbage. Genuine leather wallet with RFID blocking.</p><img src=""https://example.com/tracking-pixel.gif"" width=""1"" height=""1""/></div>",EB-HTML-01,,34.99,50,https://example.com/wallet.jpg,Accessories,New,FixedPrice,220004,
+"(eBay) Pipe In Variation Value","<p>Variation value itself contains pipe character</p>",EB-PIPE-01,,15.00,20,https://example.com/pipe.jpg,Misc,New,FixedPrice,220005,Color=Red|Blue|Size=Large
+"(eBay) Empty Variation Details","<p>FixedPrice but Variation Details is empty</p>",EB-NOVAR,,22.00,30,https://example.com/novar.jpg,Home,New,FixedPrice,220006,
+"(eBay) Multi-Image Variants","<p>Different images per variant</p>",EB-MULTI-01,,40.00,10,https://example.com/v1.jpg|https://example.com/v2.jpg,Clothing,New,FixedPrice,220007,Color=White|Size=M
+"(eBay) Multi-Image Variants","<p>Different images per variant</p>",EB-MULTI-02,,40.00,8,https://example.com/v3.jpg,Clothing,New,FixedPrice,220007,Color=Black|Size=M
+"(eBay) No Price At All","<p>Both Start price and BIN empty</p>",EB-NOPRICE,,,5,,Electronics,New,FixedPrice,220008,

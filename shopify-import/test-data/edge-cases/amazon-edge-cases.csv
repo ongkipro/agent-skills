@@ -1,0 +1,11 @@
+item-name,item-description,seller-sku,price,quantity,asin1,product-id,product-id-type,item-condition,image-url,brand-name,product-type,parent-child,parent-sku,variation-theme,color,size
+"(Amazon) Orphaned Child No Parent","Child referencing nonexistent parent",AZ-ORPH-01,19.99,10,B09ORPHAN1,012345600010,UPC,New,https://example.com/orphan.jpg,OrphanBrand,Gadgets,child,AZ-GHOST-PARENT,SizeColor,Red,Small
+"(Amazon) Duplicate Parent A","First parent row with this SKU",AZ-DUP-PARENT,,,B09DUP1,,,,https://example.com/dup1.jpg,DupBrand,Apparel,parent,,SizeColor,,
+"(Amazon) Duplicate Parent A","Second parent row same SKU - conflict",AZ-DUP-PARENT,,,B09DUP2,,,,https://example.com/dup2.jpg,DupBrand2,Shoes,parent,,SizeColor,,
+"(Amazon) Duplicate Parent A - Child","Child of duplicate parent",AZ-DUP-CH1,29.99,5,B09DUP3,012345600011,UPC,New,https://example.com/dup-child.jpg,DupBrand,Apparel,child,AZ-DUP-PARENT,SizeColor,Blue,M
+"(Amazon) No Variation Theme","Parent with empty variation-theme",AZ-NOVAR-PARENT,,,B09NOVAR1,,,,https://example.com/novar.jpg,SimpleBrand,Kitchen,parent,,,,,
+"(Amazon) No Variation Theme - Child","Child with no variation theme",AZ-NOVAR-CH1,14.99,30,B09NOVAR2,012345600012,UPC,New,https://example.com/novar-child.jpg,SimpleBrand,Kitchen,child,AZ-NOVAR-PARENT,,,
+"(Amazon) Child No Price","Child with empty price",AZ-NOPRICE-PARENT,,,B09NP1,,,,https://example.com/np.jpg,PriceBrand,Misc,parent,,Color,,
+"(Amazon) Child No Price - Variant","Price is blank",AZ-NOPRICE-CH1,,20,B09NP2,012345600013,UPC,New,https://example.com/np-child.jpg,PriceBrand,Misc,child,AZ-NOPRICE-PARENT,Color,Green,
+"(Amazon) Standalone No Parent-Child","No parent-child field at all",AZ-STANDALONE,39.99,15,B09STAND1,012345600014,UPC,Refurbished,https://example.com/stand.jpg,StandBrand,Electronics,,,,,
+"(Amazon) Used Condition","item-condition is Used",AZ-USED-01,9.99,3,B09USED1,,UPC,Used,https://example.com/used.jpg,UsedBrand,Books,,,,,,

@@ -1,0 +1,9 @@
+id,name,description,handle,sku,retail_price,supply_price,brand_name,type,tags,variant_option_one_name,variant_option_one_value,variant_option_two_name,variant_option_two_value,variant_option_three_name,variant_option_three_value,current_inventory,image_url
+lx-e01,"(Lightspeed-X) Three Options","Has all three variant option columns",three-option-product,LX-3OPT-01,45.00,18.00,TriBrand,Apparel,"complex",Color,Red,Size,Small,Material,Cotton,20,https://example.com/3opt-1.jpg
+lx-e02,"(Lightspeed-X) Three Options","Has all three variant option columns",three-option-product,LX-3OPT-02,45.00,18.00,TriBrand,Apparel,"complex",Color,Red,Size,Small,Material,Linen,15,https://example.com/3opt-1.jpg
+lx-e03,"(Lightspeed-X) Three Options","Has all three variant option columns",three-option-product,LX-3OPT-03,48.00,18.00,TriBrand,Apparel,"complex",Color,Blue,Size,Medium,Material,Cotton,12,https://example.com/3opt-2.jpg
+lx-e04,"(Lightspeed-X) No Handle","Handle is empty — should dedupe by name",,,LX-NOHDL-01,30.00,12.00,NoBrand,Bags,,Color,Natural,,,,,25,https://example.com/nohdl.jpg
+lx-e05,"(Lightspeed-X) No Handle","Handle is empty — should dedupe by name",,,LX-NOHDL-02,30.00,12.00,NoBrand,Bags,,Color,Black,,,,,18,https://example.com/nohdl.jpg
+lx-e06,"(Lightspeed-X) Negative Inventory","Current inventory is negative",,negative-inv,LX-NEG-01,22.00,9.00,TestBrand,Misc,"",,,,,,,-7,https://example.com/neg.jpg
+lx-e07,"(Lightspeed-X) No Price At All","Both retail and supply empty",no-price-item,LX-NOPRICE,,,NoBrand,Misc,,,,,,,,,10,
+lx-e08,"(Lightspeed-X) Empty Tags and Type","Minimal product",minimal-product,LX-MIN-01,5.00,2.00,,,,,,,,,,30,
