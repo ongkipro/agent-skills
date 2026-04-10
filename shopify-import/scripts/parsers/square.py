@@ -34,13 +34,13 @@ def parse_square(path):
         option_names = []
         options = []
         for i in range(1, 4):
-            name = info.get(f"Option Name {i}", "").strip()
+            name = (info.get(f"Option Name {i}") or "").strip()
             if name:
                 option_names.append(name)
                 seen = set()
                 vals = []
                 for v in variant_rows:
-                    val = v.get(f"Option Value {i}", "").strip()
+                    val = (v.get(f"Option Value {i}") or "").strip()
                     if val and val not in seen:
                         seen.add(val)
                         vals.append(val)
@@ -55,16 +55,16 @@ def parse_square(path):
         inventory = []
         for v in variant_rows:
             if option_names == ["Title"]:
-                opt_values = [{"optionName": "Title", "name": v.get("Variation Name", "Default Title").strip()}]
+                opt_values = [{"optionName": "Title", "name": (v.get("Variation Name") or "Default Title").strip()}]
             else:
                 opt_values = []
                 for i, name in enumerate(option_names):
-                    val = v.get(f"Option Value {i+1}", "").strip()
+                    val = (v.get(f"Option Value {i+1}") or "").strip()
                     if val:
                         opt_values.append({"optionName": name, "name": val})
 
             regular_price = safe_float(v.get("Price"))
-            sale_price_str = v.get("Online Sale Price", "").strip()
+            sale_price_str = (v.get("Online Sale Price") or "").strip()
             sv = {"optionValues": opt_values, "sku": v.get("SKU", ""), "price": regular_price}
 
             # Fix #1: Only set compareAtPrice if sale < regular
@@ -85,7 +85,7 @@ def parse_square(path):
                     if wv is not None:
                         inv_item["measurement"] = {"weight": {"unit": wu, "value": wv}}
 
-            cost = v.get("Default Unit Cost", "").strip()
+            cost = (v.get("Default Unit Cost") or "").strip()
             if cost:
                 inv_item["cost"] = safe_float(cost)
             sv["inventoryItem"] = inv_item

@@ -34,6 +34,31 @@ def parse_lightspeed_r(path):
             if vals:
                 opt_map[attr] = vals
 
+        # If no Size/Color, each row with different System ID is a separate product.
+        # Only group as variants if we actually have option attributes.
+        if not opt_map and len(variant_rows) > 1:
+            # Split into individual single-variant products
+            for v in variant_rows:
+                sv = {"optionValues": [{"optionName": "Title", "name": "Default Title"}],
+                      "sku": v.get("Custom SKU", ""),
+                      "price": safe_float(v.get("Price")),
+                      "inventoryItem": {"tracked": True, "requiresShipping": True}}
+                barcode = v.get("UPC", "").strip()
+                if barcode:
+                    sv["barcode"] = barcode
+                cost = safe_float(v.get("Default Cost"))
+                if cost:
+                    sv["inventoryItem"]["cost"] = cost
+                inp = {
+                    "title": name, "descriptionHtml": v.get("Description", ""),
+                    "productType": v.get("Category", ""), "vendor": v.get("Vendor", ""),
+                    "status": "DRAFT",
+                    "productOptions": [{"name": "Title", "values": [{"name": "Default Title"}]}],
+                    "variants": [sv],
+                }
+                products.append({"input": inp, "inventory": [safe_int(v.get("Qty"))]})
+            continue
+
         options = ([{"name": n, "values": [{"name": v} for v in vals]} for n, vals in opt_map.items()]
                    if opt_map else [{"name": "Title", "values": [{"name": "Default Title"}]}])
 

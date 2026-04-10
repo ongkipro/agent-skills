@@ -5,13 +5,35 @@ import re
 
 
 def read_csv(path):
-    """Read a CSV file and return a list of row dicts."""
+    """Read a CSV file and return a list of row dicts.
+
+    Handles BOM markers (utf-8-sig) and strips whitespace from header names.
+    """
     with open(path, newline="", encoding="utf-8-sig") as f:
-        return list(csv.DictReader(f))
+        reader = csv.DictReader(f)
+        # Strip whitespace from headers (some exports pad them)
+        if reader.fieldnames:
+            reader.fieldnames = [name.strip() for name in reader.fieldnames]
+        return list(reader)
 
 
 def safe_float(value, default=0):
-    """Parse a string to float, returning default on failure."""
+    """Parse a string to float, returning default on failure.
+
+    Negative values are clamped to 0 for prices (Shopify rejects negative prices).
+    Use safe_float_signed() when negatives are valid (e.g. inventory adjustments).
+    """
+    if not value or not str(value).strip():
+        return default
+    try:
+        result = float(value)
+        return max(result, 0)
+    except (ValueError, TypeError):
+        return default
+
+
+def safe_float_signed(value, default=0):
+    """Parse a string to float, allowing negative values."""
     if not value or not str(value).strip():
         return default
     try:

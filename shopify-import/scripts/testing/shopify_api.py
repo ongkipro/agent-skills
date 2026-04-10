@@ -118,6 +118,5 @@ def set_inventory(store, token, inventory_item_id, location_id, quantity):
     return graphql(store, token, INVENTORY_SET_MUTATION, {"input": {
         "reason": "correction",
         "name": "available",
-        "ignoreCompareQuantity": True,
         "quantities": [{"inventoryItemId": inventory_item_id, "locationId": location_id, "quantity": quantity}]
     }})

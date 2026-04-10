@@ -2,19 +2,21 @@
 """Tophat edge-case fixtures against a Shopify dev store.
 
 Runs every CSV in test-data/edge-cases/ through its parser and attempts
-to create each product via the Admin API. Unlike tophat.py, this script
-*expects* failures — the goal is to surface how each parser and the API
-handle malformed/unusual data.
+to create each product via `shopify store execute` (CLI 3.93.0+).
+
+Unlike tophat.py, this script *expects* failures — the goal is to surface
+how each parser and the API handle malformed/unusual data.
+
+Prerequisites:
+  brew install shopify/shopify/shopify-cli   # needs 3.93.0+
+  shopify store auth --store YOUR.myshopify.com \
+    --scopes read_products,write_products,read_inventory,write_inventory,read_locations
 
 Usage:
-  export SHOPIFY_STORE=your-store.myshopify.com
-  export SHOPIFY_ADMIN_TOKEN=shpat_xxxxxxxxxxxxx
-  python3 shopify-import/scripts/testing/tophat_edge_cases.py
-
-Modes:
-  --dry-run       Parse only, don't call the API (default: false)
-  --platform X    Run only one platform's edge cases
-  --report FILE   Write JSON report to FILE (default: stdout summary only)
+  python3 shopify-import/scripts/testing/tophat_edge_cases.py --store YOUR.myshopify.com
+  python3 shopify-import/scripts/testing/tophat_edge_cases.py --dry-run
+  python3 shopify-import/scripts/testing/tophat_edge_cases.py --store YOUR.myshopify.com --platform square
+  python3 shopify-import/scripts/testing/tophat_edge_cases.py --store YOUR.myshopify.com --report results.json
 
 Expected: a mix of successes, parse errors, API rejections, and skips.
 The JSON report captures everything for diffing across parser changes.
@@ -34,13 +36,9 @@ from parsers import (
     parse_amazon, parse_ebay, parse_clover,
     parse_lightspeed_r, parse_lightspeed_x, parse_google_merchant_center,
 )
-from shopify_api import (
-    get_credentials, get_location_id, create_product, set_inventory,
-    ShopifyAPIError, MissingCredentialsError,
-)
+from shopify_cli import ShopifyCLI, ShopifyCLIError
 
 # Map edge-case CSV filenames to their parser.
-# The format used for edge cases intentionally matches the happy-path platform.
 EDGE_CASE_MAP = {
     "square-edge-cases.csv": ("Square", parse_square),
     "woocommerce-edge-cases.csv": ("WooCommerce", parse_woocommerce),
@@ -52,14 +50,14 @@ EDGE_CASE_MAP = {
     "lightspeed-r-edge-cases.csv": ("Lightspeed R", parse_lightspeed_r),
     "lightspeed-x-edge-cases.csv": ("Lightspeed X", parse_lightspeed_x),
     "google-merchant-center-edge-cases.csv": ("Google Merchant Center", parse_google_merchant_center),
-    # These use Square's format but test structural issues
+    # Structural edge cases — use Square format
     "unicode-heavy.csv": ("Square (unicode)", parse_square),
     "malformed-headers.csv": ("Square (malformed headers)", parse_square),
     "empty-file.csv": ("Square (empty file)", parse_square),
 }
 
 
-def run_platform(platform_name, parser, csv_path, store, token, location_id, dry_run):
+def run_platform(platform_name, parser, csv_path, cli, dry_run):
     """Parse one CSV and optionally push to the API. Returns a result dict."""
     result = {
         "platform": platform_name,
@@ -92,7 +90,7 @@ def run_platform(platform_name, parser, csv_path, store, token, location_id, dry
             })
         return result
 
-    # --- API ---
+    # --- API via shopify store execute ---
     for pd in products:
         title = pd["input"].get("title", "(no title)")
         entry = {
@@ -104,10 +102,10 @@ def run_platform(platform_name, parser, csv_path, store, token, location_id, dry
         }
 
         try:
-            api_result = create_product(store, token, pd["input"])
-        except ShopifyAPIError as e:
-            entry["api_result"] = "http_error"
-            entry["api_errors"] = [{"message": str(e), "code": getattr(e, "status_code", None)}]
+            api_result = cli.create_product(pd["input"])
+        except ShopifyCLIError as e:
+            entry["api_result"] = "cli_error"
+            entry["api_errors"] = [{"message": str(e)}]
             result["products"].append(entry)
             time.sleep(0.5)
             continue
@@ -116,29 +114,31 @@ def run_platform(platform_name, parser, csv_path, store, token, location_id, dry
         user_errors = api_result.get("data", {}).get("productSet", {}).get("userErrors", [])
 
         if user_errors:
-            entry["api_errors"] = [{"field": e.get("field"), "message": e["message"], "code": e.get("code")} for e in user_errors]
+            entry["api_errors"] = [
+                {"field": e.get("field"), "message": e["message"], "code": e.get("code")}
+                for e in user_errors
+            ]
 
         if p:
             entry["api_result"] = "created"
             entry["product_id"] = p["id"]
 
-            # Set inventory if location available
-            if location_id:
-                for idx, edge in enumerate(p["variants"]["edges"]):
-                    inv_id = edge["node"]["inventoryItem"]["id"]
-                    qty = pd["inventory"][idx] if idx < len(pd.get("inventory", [])) else 0
-                    inv_entry = {"sku": edge["node"].get("sku", ""), "qty": qty, "result": None}
-                    if qty > 0:
-                        try:
-                            set_inventory(store, token, inv_id, location_id, qty)
-                            inv_entry["result"] = "set"
-                        except ShopifyAPIError as e:
-                            inv_entry["result"] = f"error: {e}"
-                    elif qty < 0:
-                        inv_entry["result"] = "skipped_negative"
-                    else:
-                        inv_entry["result"] = "skipped_zero"
-                    entry["inventory_results"].append(inv_entry)
+            # Set inventory
+            for idx, edge in enumerate(p["variants"]["edges"]):
+                inv_id = edge["node"]["inventoryItem"]["id"]
+                qty = pd["inventory"][idx] if idx < len(pd.get("inventory", [])) else 0
+                inv_entry = {"sku": edge["node"].get("sku", ""), "qty": qty, "result": None}
+                if qty > 0:
+                    try:
+                        cli.set_inventory(inv_id, run_platform.location_id, qty)
+                        inv_entry["result"] = "set"
+                    except ShopifyCLIError as e:
+                        inv_entry["result"] = f"error: {e}"
+                elif qty < 0:
+                    inv_entry["result"] = "skipped_negative"
+                else:
+                    inv_entry["result"] = "skipped_zero"
+                entry["inventory_results"].append(inv_entry)
         else:
             entry["api_result"] = "rejected"
 
@@ -191,14 +191,13 @@ def print_summary(results):
                 total_rejected += 1
                 errs = "; ".join(e["message"] for e in p.get("api_errors", []))
                 print(f"  ❌ REJECTED: {title} — {errs}")
-            elif status == "http_error":
+            elif status == "cli_error":
                 total_rejected += 1
                 errs = "; ".join(e["message"] for e in p.get("api_errors", []))
-                print(f"  ❌ HTTP ERROR: {title} — {errs}")
+                print(f"  ❌ CLI ERROR: {title} — {errs[:200]}")
             elif status == "dry-run":
                 print(f"  🔍 {title} ({variants} variant{'s' if variants != 1 else ''}) [dry-run]")
 
-    store_slug = os.environ.get("SHOPIFY_STORE", "").replace(".myshopify.com", "")
     print(f"\n{'=' * 60}")
     print(f"📊 EDGE CASE SUMMARY")
     print(f"{'=' * 60}")
@@ -208,34 +207,46 @@ def print_summary(results):
     print(f"  Products created:     {total_created}")
     print(f"  Products rejected:    {total_rejected}")
     print(f"  Products skipped:     {total_skipped}")
-    if store_slug:
-        print(f"  View products: https://admin.shopify.com/store/{store_slug}/products")
 
 
 def main():
     parser = argparse.ArgumentParser(description="Tophat edge-case fixtures against a dev store")
+    parser.add_argument("--store", type=str, help="Store domain (e.g. your-store.myshopify.com)")
     parser.add_argument("--dry-run", action="store_true", help="Parse only, don't call the API")
     parser.add_argument("--platform", type=str, help="Run only one platform (e.g. 'square', 'wix')")
     parser.add_argument("--report", type=str, help="Write JSON report to this file")
     args = parser.parse_args()
 
-    store, token, location_id = None, None, None
+    cli = None
 
     if not args.dry_run:
-        try:
-            store, token = get_credentials()
-        except MissingCredentialsError as e:
-            print(f"❌ {e}")
-            print("💡 Use --dry-run to test parsing without API credentials.")
+        if not args.store:
+            print("❌ --store is required (or use --dry-run)")
+            print("   Example: --store your-store.myshopify.com")
+            print()
+            print("   First time? Run:")
+            print("     shopify store auth --store YOUR.myshopify.com \\")
+            print("       --scopes read_products,write_products,read_inventory,write_inventory,read_locations")
             sys.exit(1)
 
-        print(f"🏪 Store: {store}")
-        location_result = get_location_id(store, token)
+        cli = ShopifyCLI(args.store)
+        print(f"🏪 Store: {args.store}")
+
+        location_result = cli.get_location_id()
         if location_result:
-            location_id, location_name = location_result
-            print(f"📍 Location: {location_name} ({location_id})")
+            run_platform.location_id, location_name = location_result
+            print(f"📍 Location: {location_name} ({run_platform.location_id})")
         else:
+            run_platform.location_id = None
             print("⚠️  Could not fetch location. Inventory will be skipped.")
+
+        # Quick auth check
+        try:
+            cli.execute("{ shop { name } }")
+            print("✅ Auth OK")
+        except ShopifyCLIError as e:
+            print(f"❌ Auth failed: {e}")
+            sys.exit(1)
     else:
         print("🔍 Dry-run mode — parsing only, no API calls")
 
@@ -246,7 +257,6 @@ def main():
 
     results = []
     for csv_file, (platform_name, parse_fn) in sorted(EDGE_CASE_MAP.items()):
-        # Filter by --platform if specified
         if args.platform and args.platform.lower() not in platform_name.lower():
             continue
 
@@ -255,7 +265,7 @@ def main():
             print(f"⚠️  Missing fixture: {csv_path}")
             continue
 
-        result = run_platform(platform_name, parse_fn, csv_path, store, token, location_id, args.dry_run)
+        result = run_platform(platform_name, parse_fn, csv_path, cli, args.dry_run)
         results.append(result)
 
     print_summary(results)
@@ -263,7 +273,11 @@ def main():
     if args.report:
         with open(args.report, "w") as f:
             json.dump(results, f, indent=2, default=str)
-        print(f"\n📄 JSON report written to: {args.report}")
+        print(f"\n📄 JSON report: {args.report}")
+
+    store_slug = (args.store or "").replace(".myshopify.com", "")
+    if store_slug and not args.dry_run:
+        print(f"🔗 View products: https://admin.shopify.com/store/{store_slug}/products")
 
 
 if __name__ == "__main__":
