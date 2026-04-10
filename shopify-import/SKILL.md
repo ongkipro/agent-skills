@@ -34,14 +34,15 @@ Do not manually write `productSet` mutations by hand. Use the import script:
 ./scripts/import.py <path-to-csv> --platform <platform-name>
 ```
 
-**Execute** against a store (requires `SHOPIFY_STORE` and `SHOPIFY_ADMIN_TOKEN` env vars):
-```
-./scripts/import.py <path-to-csv> --platform <platform-name> --execute
-```
-
-**JSON output** for programmatic use (e.g. piping into `shopify store execute`):
+**JSON output** for piping into `shopify store execute`:
 ```
 ./scripts/import.py <path-to-csv> --platform <platform-name> --json
+```
+
+**Execute** against a store (requires Shopify CLI 3.93.0+ and `shopify store auth`):
+```
+shopify store auth --store YOUR.myshopify.com --scopes read_products,write_products,read_inventory,write_inventory,read_locations
+./scripts/import.py <path-to-csv> --platform <platform-name> --json | shopify store execute --store YOUR.myshopify.com --allow-mutations
 ```
 
 ---
@@ -88,7 +89,7 @@ mutation productSet($input: ProductSetInput!) {
 - **Single-variant products** use `"Title"` as the option name with the variation name as the value.
 - **Always set `status: DRAFT`** — let the merchant review before publishing.
 - **`compareAtPrice`** must be greater than `price` to display as a sale.
-- After product creation, set inventory via `inventorySetQuantities` with `ignoreCompareQuantity: true`.
+- After product creation, set inventory via `inventorySetQuantities`.
 
 ### Inventory
 
@@ -101,7 +102,7 @@ mutation inventorySetQuantities($input: InventorySetQuantitiesInput!) {
 }
 ```
 
-Variables must include `ignoreCompareQuantity: true`, `reason: "correction"`, `name: "available"`.
+Variables must include `reason: "correction"`, `name: "available"`.
 
 ## Validation constraints
 
@@ -122,5 +123,5 @@ Variables must include `ignoreCompareQuantity: true`, `reason: "correction"`, `n
 3. **Validate** the CSV with `./scripts/validate_csv.py`
 4. **Preview** with `./scripts/import.py` — show the user what will be created
 5. **Confirm** with the user before executing
-6. **Execute** with `./scripts/import.py --execute` (or `--json` piped to `shopify store execute`)
+6. **Execute** with `--json` piped to `shopify store execute`
 7. **Summarize**: products created, variants, skipped (with reasons), inventory set

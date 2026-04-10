@@ -1,18 +1,26 @@
 #!/usr/bin/env python3
 """Tophat script — imports all platform test CSVs into a Shopify dev store.
 
+Prerequisites:
+  - Shopify CLI 3.93.0+ (brew install shopify/shopify/shopify-cli)
+
 Usage:
   1. Create a dev store at https://partners.shopify.com → Stores → Add store → Development store
-  2. Create a custom app: Settings → Apps → Develop apps → Create app
-     Scopes needed: write_products, read_products, write_inventory, read_inventory, read_locations
-  3. Install the app and copy the Admin API access token
-  4. Run:
+  2. Authenticate:
+
+     shopify store auth --store your-store.myshopify.com \\
+       --scopes read_products,write_products,read_inventory,write_inventory,read_locations
+
+  3. Run:
 
      export SHOPIFY_STORE=your-store.myshopify.com
-     export SHOPIFY_ADMIN_TOKEN=shpat_xxxxxxxxxxxxx
-     python3 agent-skills/shopify-import/scripts/testing/tophat.py
+     python3 shopify-import/scripts/testing/tophat.py
 
-  5. Verify at: https://admin.shopify.com/store/<your-store>/products
+  4. Verify at: https://admin.shopify.com/store/<your-store>/products
+
+Note: This script still uses direct API calls via shopify_api.py (requires
+SHOPIFY_ADMIN_TOKEN). For the token-free `shopify store execute` approach,
+use tophat_edge_cases.py instead.
 
 Expected results:
   - 23 products created (43 variants) across all 10 platforms
