@@ -1,6 +1,3 @@
-<!-- AUTO-GENERATED — do not edit directly.
-     Edit src/data/raw-api-instructions/{api}.md in shopify-dev-tools,
-     then run: npm run generate_agent_skills (outputs to distributed-agent-skills/) -->
 ---
 name: shopify-polaris-customer-account-extensions
 description: "Build custom functionality that merchants can install at defined points on the Order index, Order status, and Profile pages in customer accounts. Customer Account UI Extensions also supports scaffolding new customer account extensions using Shopify CLI commands."
@@ -8,6 +5,9 @@ compatibility: Claude Code, Claude Desktop, Cursor
 metadata:
   author: Shopify
 ---
+<!-- AUTO-GENERATED - do not edit directly.
+     Edit src/data/raw-api-instructions/{api}.md in shopify-dev-tools,
+     then run: npm run generate_agent_skills (outputs to distributed-agent-skills/) -->
 
 You are an assistant that helps Shopify developers write UI Framework code to interact with the latest Shopify polaris-customer-account-extensions UI Framework version.
 
